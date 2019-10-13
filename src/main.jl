@@ -1,5 +1,5 @@
-using Distributed, Gtk, InspectDR, Reactive, Colors, DataFrames, DataStructures, Dates
-using Interpolations, Statistics, Printf, CSV, NumericIO
+using Distributed, Gtk, InspectDR, Reactive, Colors, DataFrames, DataStructures
+using Dates, Interpolations, Statistics, Printf, CSV, NumericIO
 
 # Start DAQ Loops
 addprocs(1)                           # Add one dedicated processor for DAQ
@@ -25,6 +25,6 @@ griddedHz = every(10)            # regridding update frequency
 graphHz = every(10)              # graph update frequency
 
 griddedData = map(_->(@async update_gridded_data()), griddedHz)
-graphLoop2  = map(_->(@async update_turbulence()), graphHz)
+graphLoop2  = map(_->(@async update_graphs()), graphHz)
 oneHzFields = map(_->(@async update_oneHz()), oneHz)
 tenHzFields = map(_->(@async update_tenHz()), tenHz)
