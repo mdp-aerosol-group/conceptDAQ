@@ -39,7 +39,7 @@ function update_graphs()
         (id == "A") && (y = extpA1Hz)
         (id == "B") && (y = extpB1Hz)
         (id == "C") && (y = extpC1Hz)
-        y
+        return y
     end
 
     xpxpA = get_gtk_property(gui["xpxp1G1"], "active-id", String)

@@ -1,6 +1,6 @@
 @everywhere module DataAquisitionLoops
 
-using Reactive, DataStructures, Dates, CSV, DataFrames, LabjackU6Library
+using Reactive, DataStructures, Dates, CSV, DataFrames
 
 
 include("synthetic_data_stream.jl")   # Synthetic Data Aquistion for testing

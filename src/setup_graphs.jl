@@ -4,7 +4,6 @@ using Colors
 
 function block_series(yaxis)
 	plot = InspectDR.transientplot(yaxis, title="")
-	InspectDR.overwritefont!(plot.layout, fontname="Helvetica", fontscale=1.0)
 	plot.layout[:enable_legend] = false
 	plot.layout[:enable_timestamp] = false
 	plot.layout[:length_tickmajor] = 10
