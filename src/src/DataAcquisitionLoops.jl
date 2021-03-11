@@ -1,13 +1,13 @@
-@everywhere module DataAquisitionLoops
+module DataAcquisitionLoops
 
 using Reactive, DataStructures, Dates, CSV, DataFrames
-
 
 include("synthetic_data_stream.jl")   # Synthetic Data Aquistion for testing
 
 # Raw data streams - single record saved in named tuples. The named tuple entry
 #                    is appended to the data file upon receipt and values are then
-#                    added to the circular buffers beliw
+#                    added to the circular buffers below
+
 # RS232 Data
 t = now()
 
@@ -76,7 +76,7 @@ function tenHz_daq_loop()
 end
 
 # Asynchronous DAQ loops
-function aquire()
+function acquire()
     oneHz = every(1.0)      # 1  Hz timer for RS232
     tenHz = every(0.1)      # 10 Hz timer for LJ
 

@@ -14,7 +14,7 @@ const path = mapreduce(a->"/"*a,*,(pwd() |> x->split(x,"/"))[2:3])*"/Data/"
 
 # Extrapolation Signals - these hold the data from the circ buffer and are used
 #                         to interpolate the data onto a fixed 1Hz or 10 Hz grid
-const t = @fetchfrom 2 DataAquisitionLoops.t
+const t = @fetchfrom 2 DataAcquisitionLoops.t
 const extp       = extrapolate(interpolate(([0, 1],),[0.0, 1],Gridded(Linear())),0)
 const extpA1Hz   = Signal(extp)
 const extpB1Hz   = Signal(extp)
@@ -25,5 +25,5 @@ const extpC10Hz  = Signal(extp)
 const t1HzInt    = Signal(Dates.value.(t:Dates.Second(1):(t + Dates.Minute(1))))
 const t10HzInt   = Signal(Dates.value.(t:Dates.Millisecond(100):(t + Dates.Minute(1))))
 
-const datestr = @fetchfrom 2 DataAquisitionLoops.datestr
-const HHMM = @fetchfrom 2 DataAquisitionLoops.HHMM
+const datestr = @fetchfrom 2 DataAcquisitionLoops.datestr
+const HHMM = @fetchfrom 2 DataAcquisitionLoops.HHMM

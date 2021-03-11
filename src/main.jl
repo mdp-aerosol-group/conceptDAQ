@@ -1,4 +1,5 @@
 using Distributed
+addprocs(1; exeflags="--project")                           
 using Gtk
 using InspectDR
 using Reactive
@@ -11,11 +12,9 @@ using Statistics
 using Printf
 using CSV
 using NumericIO
+using DataAcquisitionLoops
 
-addprocs(1)                           # Add one dedicated processor for DAQ
-include("DataAquisitionLoops.jl")
-using. DataAquisitionLoops
-Godot = @spawnat 2 DataAquisitionLoops.aquire()
+DAQ = @spawnat 2 DataAcquisitionLoops.acquire()
 
 (@isdefined wnd) && destroy(wnd)                # Destroy window if exists
 gui = GtkBuilder(filename=pwd()*"/gui.glade")   # Load the GUI template
@@ -39,3 +38,5 @@ griddedData = map(_->(@async update_gridded_data()), griddedHz)
 graphLoop2  = map(_->(@async update_graphs()), graphHz)
 oneHzFields = map(_->(@async update_oneHz()), oneHz)
 tenHzFields = map(_->(@async update_tenHz()), tenHz)
+
+wait(Godot)

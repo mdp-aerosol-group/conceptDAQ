@@ -1,20 +1,20 @@
 # Populate 1Hz Boxes
 function update_oneHz()
-    frame = @fetchfrom 2 DataAquisitionLoops.RS232dataStream.value
+    frame = @fetchfrom 2 DataAcquisitionLoops.RS232dataStream.value
     set_gtk_property!(gui["OneHzTime"], :text, Dates.format((frame.t)[1], "HH:MM:SS.s"))
     set_gtk_property!(gui["A1Hz"], :text, @sprintf("%.1f", (frame.A)[1]))
     set_gtk_property!(gui["B1Hz"], :text, @sprintf("%.1f", (frame.B)[1]))
     set_gtk_property!(gui["C1Hz"], :text, @sprintf("%.1f", (frame.C)[1]))
 
-    dstr = @fetchfrom 2 DataAquisitionLoops.datestr
-    HM = @fetchfrom 2 DataAquisitionLoops.HHMM
+    dstr = @fetchfrom 2 DataAcquisitionLoops.datestr
+    HM = @fetchfrom 2 DataAcquisitionLoops.HHMM
     push!(datestr, dstr.value)
     push!(HHMM, HM.value)
 end
 
 # Populate 10Hz Boxes
 function update_tenHz()
-    frame = @fetchfrom 2 DataAquisitionLoops.LJdataStream.value
+    frame = @fetchfrom 2 DataAcquisitionLoops.LJdataStream.value
     set_gtk_property!(gui["TenHzTime"], :text, Dates.format((frame.t)[1], "HH:MM:SS.s"))
     set_gtk_property!(gui["A10Hz"], :text, @sprintf("%.2f", (frame.A)[1]))
     set_gtk_property!(gui["B10Hz"], :text, @sprintf("%.2f", (frame.B)[1]))
@@ -23,7 +23,7 @@ end
 
 # Update Graphs
 function update_graphs()
-    frame = @fetchfrom 2 DataAquisitionLoops.RS232Buffers.value
+    frame = @fetchfrom 2 DataAcquisitionLoops.RS232Buffers.value
     t1 = t1HzInt.value
     x = (t1HzInt.value .- t1HzInt.value[1])./1000/60
 
@@ -51,7 +51,7 @@ end
 
 # Update gridded data
 function update_gridded_data()
-    LJBuffers = @fetchfrom 2 DataAquisitionLoops.LJBuffers
+    LJBuffers = @fetchfrom 2 DataAcquisitionLoops.LJBuffers
     t = convert(Array{DateTime},LJBuffers.value.t)
     x = Dates.value.(t)
     t1Hz = LJBuffers.value.t[1]:Dates.Second(1):LJBuffers.value.t[end]
@@ -69,7 +69,7 @@ function update_gridded_data()
     push!(extpB10Hz, getExtp(LJBuffers.value.B))
     push!(extpC10Hz, getExtp(LJBuffers.value.C))
 
-    RS232Buffers = @fetchfrom 2 DataAquisitionLoops.RS232Buffers
+    RS232Buffers = @fetchfrom 2 DataAcquisitionLoops.RS232Buffers
     t = convert(Array{DateTime},RS232Buffers.value.t)
     x = Dates.value.(t)
 
