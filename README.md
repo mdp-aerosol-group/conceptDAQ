@@ -9,6 +9,13 @@ Package
 pkg> add https://github.com/mdpetters/Julia-AFRP-DataAcquisition.git
 ```
 
+Run 
+```bash
+julia --project -e 'using Pkg; Pkg.instantiate()' 
+```
+
+in the source directory to load the dependencies. This only needs to be performed once.
+
 # Brief Description
 
 The GUI is created using glade (see gui.glade as example). 
@@ -25,13 +32,19 @@ If you want a responsive REPL while the program runs in the background, comment 
 wait(Godot)
 ```
 
-at the end of the program. 
+at the end of the program or click the "Stop DAQ" button. (The program will continue to run when in REPL mode, but will terminate when called from the command line).
 
 Examples include how to generate a responsive graph (with dropdown selection of signals) and GUI textbox to display data. 
 
 # Run a standalone program
 
+Call
 
+```bash
+julia -q --project main.jl  
+```
+
+This will compile the project and run the program. The "End DAQ" button will close the program.
 
 # Screenshots
 
