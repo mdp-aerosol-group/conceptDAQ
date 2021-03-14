@@ -53,12 +53,11 @@ This will compile the project and run the program. The "End DAQ" button will clo
 ![A](doc/graphs.png)
 
 # Low-latency startup
-
 Use [PackageCompiler.jl](https://julialang.github.io/PackageCompiler.jl/dev/) to create a 
-custom sysimage.
+custom sysimage. Note that this requires significant memory (>6 GB). Create a large swap partion on systems with limited memory (e.g. single-board-computers).
 
 ```bash
-julia --project -e 'using PackageCompiler; create_sysimage([:CSV, :Colors, :DataFrames, :DataStructures, :Dates, :Distributed, :Distributions, :Gtk, :InspectDR, :Interpolations, :NumericIO, :Printf, :Random, :Reactive, :Statistics], sysimage_path="sys_daq.so", precompile_execution_file="main.jl")'
+julia --project --optimize=3 -e 'using PackageCompiler; create_sysimage([:CSV, :Colors, :DataFrames, :DataStructures, :Dates, :Distributed, :Distributions, :Gtk, :InspectDR, :Interpolations, :NumericIO, :Printf, :Random, :Reactive, :Statistics], sysimage_path="sys_daq.so", precompile_execution_file="main.jl")'
 ```
 
 Then call with custom image
