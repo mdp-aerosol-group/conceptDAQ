@@ -4,17 +4,13 @@ Concept implementation using julia for building data acquisition systems.
 
 # Installation
 
-Package
-```julia
-pkg> add https://github.com/mdpetters/Julia-AFRP-DataAcquisition.git
-```
+Clone the repository, change to the ```src/``` directory and run 
 
-Run 
 ```bash
 julia --project -e 'using Pkg; Pkg.instantiate()' 
 ```
 
-in the source directory to load the dependencies. This only needs to be performed once.
+load install the dependencies. This only needs to be performed once.
 
 # Brief Description
 
