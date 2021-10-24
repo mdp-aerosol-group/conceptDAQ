@@ -1,4 +1,4 @@
-# Julia-AFRP-DataAcquisition
+# conceptDAQ
 
 Concept implementation using julia for building data acquisition systems.
 
@@ -65,12 +65,3 @@ Then call with custom image
 ```bash
 julia -q --project --sysimage sys_daq.so main.jl 
 ```
-
-# Related Projects
-Implementation of SMPS data acquisition software using the same concepts
-
-https://github.com/mdpetters/Julia-SMPS-IM
-
-Julia driver for hardware data acquisition using the Labjack U6 multifunction DAQ device
-
-https://github.com/mdpetters/LabjackU6Library.jl
